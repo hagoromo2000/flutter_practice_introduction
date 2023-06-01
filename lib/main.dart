@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore_for_file: prefer_const_constructors
 void main() {
   runApp(const MyApp());
 }
@@ -84,18 +85,47 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Row(
+          children: const [
+            Icon(Icons.create),
+            Text("初めてのタイトル"),
+          ],
+        ),
       ),
       body: Column(children: [
-        Text("Hello world"),
-        Text("ハローワールド"),
+        const Text("Hello world"),
+        const Text("ハローワールド"),
+        TextButton(
+            onPressed: () => {print("ボタンが押されたよ")}, child: const Text("ボタン")),
+        Row(
+          // 列の要素を等間隔で表示する
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: const [
+            Icon(
+              Icons.favorite,
+              color: Colors.pink,
+              size: 24.0,
+            ),
+            Icon(
+              Icons.audiotrack,
+              color: Colors.green,
+              size: 30.0,
+            ),
+            Icon(
+              Icons.beach_access,
+              color: Colors.blue,
+              size: 36.0,
+            ),
+          ],
+        )
       ]),
-
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        onPressed: () => {print("推したね?")},
+        child: const Icon(Icons.timer),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+
+      drawer: const Drawer(child: Center(child: Text("Drawer"))),
+      endDrawer: const Drawer(child: Center(child: Text("EndDrawer"))),
     );
   }
 }
